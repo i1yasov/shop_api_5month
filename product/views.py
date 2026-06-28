@@ -61,3 +61,11 @@ def category_list_api_view(request):
     category = Category.objects.all()
     list_ = CategorylistSeralizer(category, many=True).data
     return Response(data=list_)
+
+
+@api_view(["GET"])
+def product_reviews_api_view(request):
+    products = Product.objects.select_related("category").prefetch_related( "reviews")
+
+    serializer = ProductReviewSerializer(products, many=True)
+    return Response(serializer.data)
