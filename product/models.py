@@ -22,7 +22,7 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.title
 
-STARS = ((i,'*' * 1)for i in range (1,7) )
+STARS = ((i,'*' * 1)for i in range (1,6) )
 
 class Review(models.Model):
     stars = models.IntegerField(choices=STARS, default=3)
